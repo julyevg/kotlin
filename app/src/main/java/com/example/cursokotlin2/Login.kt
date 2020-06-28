@@ -15,7 +15,7 @@ import org.json.JSONObject
 
 
 class Login : AppCompatActivity() {
-
+/*
     companion object{
         const val KEY_USUARIO="user"
         const val KEY_PASSWORD="password"
@@ -29,7 +29,7 @@ class Login : AppCompatActivity() {
     var dni : String? = null
     var password: String? = null
     var lastname : String? = null
-    var address : String? =null
+    var address : String? =null*/
 
     data class User(val users:String?, val password:String?, val dni:String?, val nombre:String?, val lastname:String?, val address:String? )
 
@@ -37,39 +37,41 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         setSupportActionBar(toolbar)
-        val user : User? = createUser();
 
-        if( user == null)  {
-            Toast.makeText(this, "No se logró obtener el usuario", Toast.LENGTH_SHORT).show()
-            return
+        val mShared  = mSharedPreferences(this)
+        val session = mShared.getKey("session")
+      //  val user : User? = createUser()
+
+        if(session!="none") {
+            val sessionObj = JSONObject(session)
+            val user: Usuario.User? = Usuario(this).createUser(sessionObj)
+            if (user == null) {
+                Toast.makeText(this, "No se logró obtener el usuario", Toast.LENGTH_SHORT).show()
+                return
+            }
+            ingresar.setOnClickListener { view ->
+
+                Toast.makeText(this, "toy aqui", Toast.LENGTH_SHORT).show()
+
+                if (user.users == usuariologin.text.toString() && user.password == passwordlogin.text.toString()) {
+                    val intento1 = Intent(this, Perfil_Usuario::class.java)
+                   /* intento1.putExtra(Usuario.KEY_NAME, user.nombre)
+                    intento1.putExtra(Usuario.KEY_LASTNAME, user.lastname)
+                    intento1.putExtra(Usuario.KEY_DNI, user.dni)
+                    intento1.putExtra(Usuario.KEY_ADDRESS, user.address)*/
+                    startActivity(intento1)
+                } else {
+                    Toast.makeText(this, "User y Password Incorrecto", Toast.LENGTH_SHORT).show()
+                }
+
+            }
         }
-
-        ingresar.setOnClickListener { view ->
-
-            Toast.makeText(this, "toy aqui", Toast.LENGTH_SHORT).show()
-
-           if( user.users == usuariologin.text.toString() && user.password == passwordlogin.text.toString() )
-           {
-               val intento1 = Intent(this, Perfil_Usuario::class.java)
-               intento1.putExtra(KEY_NAME, user.nombre)
-               intento1.putExtra(KEY_LASTNAME, user.lastname)
-               intento1.putExtra(KEY_DNI, user.dni)
-               intento1.putExtra(KEY_ADDRESS, user.address)
-               startActivity(intento1)
-           }
-           else
-           {
-               Toast.makeText(this, "User y Password Incorrecto", Toast.LENGTH_SHORT).show()
-           }
-
-        }
-
         registrar.setOnClickListener{ view ->
             val intento1 = Intent(this,  MainActivity::class.java)
             startActivity(intento1)
         }
     }
-    private fun createUser() : User? {
+   /* private fun createUser() : User? {
 
         val mShared  = mSharedPreferences(this)
         val session = mShared.getKey("session") ?: return null
@@ -87,6 +89,6 @@ class Login : AppCompatActivity() {
             users, password, dni, nombre, lastname, address
         )
         return user
-    }
+    }*/
 
 }

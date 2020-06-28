@@ -16,17 +16,17 @@ class EditarPerfil : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val user = findViewById<TextView>(R.id.usuario)
-        user.setText(intent.getStringExtra(Login.KEY_USUARIO)).toString()
+        user.setText(intent.getStringExtra(Usuario.KEY_USUARIO)).toString()
         val password = findViewById<TextView>(R.id.password)
-        password.setText(intent.getStringExtra(Login.KEY_PASSWORD)).toString()
+        password.setText(intent.getStringExtra(Usuario.KEY_PASSWORD)).toString()
         val nombre = findViewById<TextView>(R.id.nombre)
-        nombre.setText(intent.getStringExtra(Login.KEY_NAME)).toString()
+        nombre.setText(intent.getStringExtra(Usuario.KEY_NAME)).toString()
         val apellido = findViewById<TextView>(R.id.apellido)
-        apellido.setText(intent.getStringExtra(Login.KEY_LASTNAME)).toString()
+        apellido.setText(intent.getStringExtra(Usuario.KEY_LASTNAME)).toString()
         val dni = findViewById<TextView>(R.id.dni)
-        dni.setText(intent.getStringExtra(Login.KEY_DNI)).toString()
+        dni.setText(intent.getStringExtra(Usuario.KEY_DNI)).toString()
         val direccion = findViewById<TextView>(R.id.dni)
-        direccion.setText(intent.getStringExtra(Login.KEY_ADDRESS)).toString()
+        direccion.setText(intent.getStringExtra(Usuario.KEY_ADDRESS)).toString()
 
         guardar.setOnClickListener { view ->
 

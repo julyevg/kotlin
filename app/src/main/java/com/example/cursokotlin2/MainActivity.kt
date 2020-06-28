@@ -27,17 +27,17 @@ class MainActivity : AppCompatActivity() {
         {
 
             val user = findViewById<TextView>(R.id.usuario)
-            user.setText(intent.getStringExtra(Login.KEY_USUARIO)).toString()
+            user.setText(intent.getStringExtra(Usuario.KEY_USUARIO)).toString()
             val password = findViewById<TextView>(R.id.password)
-            password.setText(intent.getStringExtra(Login.KEY_PASSWORD)).toString()
+            password.setText(intent.getStringExtra(Usuario.KEY_PASSWORD)).toString()
             val nombre = findViewById<TextView>(R.id.nombre)
-            nombre.setText(intent.getStringExtra(Login.KEY_NAME)).toString()
+            nombre.setText(intent.getStringExtra(Usuario.KEY_NAME)).toString()
             val apellido = findViewById<TextView>(R.id.apellido)
-            apellido.setText(intent.getStringExtra(Login.KEY_LASTNAME)).toString()
+            apellido.setText(intent.getStringExtra(Usuario.KEY_LASTNAME)).toString()
             val dni = findViewById<TextView>(R.id.dni)
-            dni.setText(intent.getStringExtra(Login.KEY_DNI)).toString()
+            dni.setText(intent.getStringExtra(Usuario.KEY_DNI)).toString()
             val direccion = findViewById<TextView>(R.id.direccion)
-            direccion.setText(intent.getStringExtra(Login.KEY_ADDRESS)).toString()
+            direccion.setText(intent.getStringExtra(Usuario.KEY_ADDRESS)).toString()
 
         }
         button.setOnClickListener{view ->
@@ -60,12 +60,12 @@ private fun validateData():Boolean {
 
     private fun guardarJson(usuario:String, password:String, name:String, lastname:String, dni:String, address:String  ) {
         val json = JSONObject()
-        json.put(Login.KEY_USUARIO, usuario)
-        json.put(Login.KEY_PASSWORD, password)
-        json.put(Login.KEY_NAME, name)
-        json.put(Login.KEY_LASTNAME, lastname)
-        json.put(Login.KEY_DNI, dni)
-        json.put(Login.KEY_ADDRESS, address)
+        json.put(Usuario.KEY_USUARIO, usuario)
+        json.put(Usuario.KEY_PASSWORD, password)
+        json.put(Usuario.KEY_NAME, name)
+        json.put(Usuario.KEY_LASTNAME, lastname)
+        json.put(Usuario.KEY_DNI, dni)
+        json.put(Usuario.KEY_ADDRESS, address)
         val sf = mSharedPreferences(this)
         sf.put("session", json.toString())
         sf.save()
@@ -75,12 +75,12 @@ private fun validateData():Boolean {
         guardarJson(usuario, password, name, lastname, dni, address)
 
         val sf = mSharedPreferences(this)
-        sf.put(Login.KEY_USUARIO, usuario)
-        sf.put(Login.KEY_PASSWORD, password)
-        sf.put(Login.KEY_NAME, name)
-        sf.put(Login.KEY_LASTNAME, lastname)
-        sf.put(Login.KEY_DNI, dni)
-        sf.put(Login.KEY_ADDRESS, address)
+        sf.put(Usuario.KEY_USUARIO, usuario)
+        sf.put(Usuario.KEY_PASSWORD, password)
+        sf.put(Usuario.KEY_NAME, name)
+        sf.put(Usuario.KEY_LASTNAME, lastname)
+        sf.put(Usuario.KEY_DNI, dni)
+        sf.put(Usuario.KEY_ADDRESS, address)
         sf.save()
 
     }

@@ -10,7 +10,7 @@ class mSharedPreferences {
 
     constructor(context: Context) {
         this.context = context
-        this.sharedPreferences = context.getSharedPreferences("CURSO_KOTLIN", Context.MODE_PRIVATE)
+        this.sharedPreferences = context.getSharedPreferences("TALLER_KOTLIN_FORM", Context.MODE_PRIVATE)
         this.editor = this.sharedPreferences.edit()
     }
     fun put(key:String, value : String) {
@@ -19,9 +19,9 @@ class mSharedPreferences {
     fun save() {
         this.editor.apply()
     }
-
     fun getKey(key: String) : String? {
         return this.sharedPreferences.getString(key, "none")
     }
+
 
 }
